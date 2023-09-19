@@ -1,0 +1,85 @@
+Desarrollado en Linux
+
+Instalación de PHP
+sudo apt install ca-certificates apt-transport-https software-properties-common
+sudo add-apt-repository ppa:ondrej/php
+sudo apt update
+sudo apt install php8.1 php8.1-bcmath php8.1-mbstring php8.1-xml php8.1-mysql php8.1-curl
+sudo update-alternatives --set php /usr/bin/php8.1
+
+Instalación de Composer
+sudo apt install curl
+curl https://getcomposer.org/download/2.2.4/composer.phar --output composer
+sudo mv composer /usr/local/bin/composer
+sudo chmod +x /usr/local/bin/composer
+
+Instalación de MySQL
+sudo apt install mysql-server
+sudo mysql
+mysql> CREATE DATABASE dss CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+mysql> CREATE USER 'dss'@'localhost' IDENTIFIED BY 'dss';
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'dss'@'localhost';
+mysql> FLUSH PRIVILEGES;
+
+IMPORTANTE: Estas instrucciones solamente deben seguirse para preparar un entorno de
+desarrollo, en ningún caso deberían utilizarse para configurar un servidor en producción.
+
+Instalación de Adminer
+wget https://www.adminer.org/latest.php
+sudo mkdir /usr/share/adminer
+sudo mv latest.php /usr/share/adminer/adminer.php
+sudo sh -c 'echo "Alias /adminer /usr/share/adminer/adminer.php" > /etc/apache2/conf-available/adminer.conf'
+sudo a2enconf adminer
+sudo systemctl reload apache2
+
+Para acceder a adminer -> http://localhost/adminer
+
+Instalación de Git
+sudo apt install git
+
+Instalación de VSC
+Una vez instalado es recomendable que instales las siguientes extensiones:
+● Spanish Language Pack for Visual Studio Code
+● PHP Intelephense
+● DotENV
+
+Para crear un proyecto con Composer:
+composer create-project laravel/laravel=9.* miproyecto --prefer-dist
+
+Composer install -> Composer lee el archivo "composer.json" del proyecto y descarga e instala todas las dependencias especificadas en el archivo.
+
+Para ejecutar la aplicación:
+php artisan serve
+
+cp .env.example .env
+El .env no se sube al repositorio pero hay que cambiar los datos de la bd
+tambien APP_DEBUG=true
+
+Crear un nuevo modelo de datos: php artisan make:model Product
+
+Inicializar bd: php artisan migrate:install
+
+php artisan key:generate -> se utiliza en proyectos Laravel para generar una nueva clave de aplicación y almacenarla de forma segura en el archivo de configuración de la aplicación.
+
+Para ejecutar las últimas migraciones: php artisan migrate
+
+php artisan migrate:fresh -> permite eliminar todas las tablas de la base de datos y volver a crearlas a partir de cero.
+
+composer update ->  Composer lee el archivo "composer.json" del proyecto y actualiza todas las dependencias especificadas en el archivo a las últimas versiones disponibles.
+
+Para crear una migración:
+php artisan make:migration create_products_table --create=products
+
+Para la autenticación:
+composer require laravel/ui
+php artisan ui bootstrap --auth
+
+Para el mail he cambiado esto en el .env:
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=465
+MAIL_USERNAME=noelmartinezpomares@gmail.com
+MAIL_PASSWORD=soaapajwfhknofau
+MAIL_ENCRYPTION=ssl
+MAIL_FROM_ADDRESS="noelmartinezpomares@gmail.com"
+MAIL_FROM_NAME="${APP_NAME}"

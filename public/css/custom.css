@@ -1,0 +1,149 @@
+:root {
+  --g6-home-gradient: rgba(33, 33, 33, 0.7);
+}
+
+#logo {
+  text-decoration: none;
+  color: var(--bs-body-color);
+}
+
+th, td {
+  vertical-align: middle;
+}
+
+div.g6-section {
+  padding: 2em 1em;
+  margin-left: -1.5rem !important;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+}
+
+div.g6-section + div.g6-section {
+  border-top: 1px solid #aaa;
+}
+
+div.g6-header {
+  margin-top: -1.5rem !important;
+  background:
+    linear-gradient(var(--g6-home-gradient), var(--g6-home-gradient)),
+    url('../home-gradient.png');
+  background-size: cover;
+  color: white;
+}
+
+
+div.g6-section, div.g6-section_content {
+  display: flex;
+  gap: 0.4em;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+}
+
+div.g6-section_content {
+  gap: 1em;
+  margin-top: 1.5em;
+}
+
+.g6-title {
+    text-align: center;
+}
+
+p.g6-header_text {
+  margin: 0 auto;
+}
+
+div.g6-header_buttons {
+  display: flex;
+  gap: 1em;
+  flex-direction: column;
+  font-size: 0.8rem;
+}
+
+.g6-button {
+  transition: background 0.2s ease-in-out;
+  text-decoration: none;
+  color: black;
+  padding: 0.5em 1em;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+}
+
+.g6-button:focus {
+  color: white;
+}
+
+.g6-button-primary {
+  color: white;
+  background-color: black;
+}
+
+.g6-button-primary:hover {
+  background-color: white;
+  color: black;
+}
+
+.g6-button-secondary:hover {
+  background-color: white;
+  color: black;
+}
+
+.g6-button-secondary {
+  color: white;
+  background: none;
+  border: solid 2px white;
+}
+
+div.g6-card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+div.g6-card i {
+  font-size: 2.5rem;
+}
+
+div.g6-author {
+  width: 200px;
+  height: 200px;
+  border-radius: 15%;
+  overflow: hidden;
+}
+
+div.g6-author img {
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  h1.g6-title {
+    font-size: 3rem;
+  }
+  p.g6-header_text {
+    max-width: 50%;
+    font-size: 1.2rem;
+  }
+  div.g6-header_buttons {
+    flex-direction: row;
+    font-size: 1rem;
+  }
+
+  div.g6-card {
+    flex-direction: row;
+    text-align: left;
+  }
+
+  div.g6-section_content {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-around;
+  }
+
+  div.g6-card i {
+    margin-right: 1em;
+  }
+}
